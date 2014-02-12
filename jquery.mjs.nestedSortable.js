@@ -92,8 +92,8 @@
 			//Regenerate the absolute position used for position checks
 			this.positionAbs = this._convertPositionTo("absolute");
 
-      // Find the top offset before rearrangement,
-      var previousTopOffset = this.placeholder.offset().top;
+			// Find the top offset before rearrangement,
+			var previousTopOffset = this.placeholder.offset().top;
 
 			//Set the helper position
 			if(!this.options.axis || this.options.axis != "y") this.helper[0].style.left = this.position.left+'px';
@@ -139,7 +139,7 @@
 			    level = this._getLevel(this.placeholder),
 			    childLevels = this._getChildLevels(this.helper);
 
-      // To find the previous sibling in the list, keep backtracking until we hit a valid list item.
+      			// To find the previous sibling in the list, keep backtracking until we hit a valid list item.
 			var previousItem = this.placeholder[0].previousSibling ? $(this.placeholder[0].previousSibling) : null;
 			if (previousItem != null) {
 				while (previousItem[0].nodeName.toLowerCase() != 'li' || previousItem[0] == this.currentItem[0] || previousItem[0] == this.helper[0]) {
@@ -152,18 +152,18 @@
 				}
 			}
 
-      // To find the next sibling in the list, keep stepping forward until we hit a valid list item.
-      var nextItem = this.placeholder[0].nextSibling ? $(this.placeholder[0].nextSibling) : null;
-      if (nextItem != null) {
-        while (nextItem[0].nodeName.toLowerCase() != 'li' || nextItem[0] == this.currentItem[0] || nextItem[0] == this.helper[0]) {
-          if (nextItem[0].nextSibling) {
-            nextItem = $(nextItem[0].nextSibling);
-          } else {
-            nextItem = null;
-            break;
-          }
-        }
-      }
+		        // To find the next sibling in the list, keep stepping forward until we hit a valid list item.
+		        var nextItem = this.placeholder[0].nextSibling ? $(this.placeholder[0].nextSibling) : null;
+		        if (nextItem != null) {
+	 		  while (nextItem[0].nodeName.toLowerCase() != 'li' || nextItem[0] == this.currentItem[0] || nextItem[0] == this.helper[0]) {
+			    if (nextItem[0].nextSibling) {
+			      nextItem = $(nextItem[0].nextSibling);
+			    } else {
+			      nextItem = null;
+			      break;
+			    }
+			  }
+		        }
 
 			var newList = document.createElement(o.listType);
 
@@ -185,14 +185,14 @@
 				if (!previousItem.children(o.listType).length) {
 					previousItem[0].appendChild(newList);
 				}
-        // If this item is being moved from the top, add it to the top of the list.
-        if (previousTopOffset && (previousTopOffset <= previousItem.offset().top)) {
-          previousItem.children(o.listType).prepend(this.placeholder);
-        }
-        // Otherwise, add it to the bottom of the list.
-        else {
+				// If this item is being moved from the top, add it to the top of the list.
+				if (previousTopOffset && (previousTopOffset <= previousItem.offset().top)) {
+				  previousItem.children(o.listType).prepend(this.placeholder);
+				}
+				// Otherwise, add it to the bottom of the list.
+				else {
 				  previousItem.children(o.listType)[0].appendChild(this.placeholder[0]);
-        }
+				}
 				this._trigger("change", event, this._uiHash());
 			}
 			else {
